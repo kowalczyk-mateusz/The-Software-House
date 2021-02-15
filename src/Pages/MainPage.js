@@ -4,13 +4,14 @@ import styled from 'styled-components'
 import Navigation from '../Components/Navigation/Navigation'
 import ProductList from '../Components/ProductList/ProductList'
 import ProductCard from '../Components/ProductCard/ProductCard'
-
+import Empty from '../Components/Empty/Empty'
 const MainPage = () =>{
     return(
         <StyledMainPage>
-                <ProductCard/>
+                {/* <ProductCard/> */}
             <Navigation />
-            <ProductList />
+            {/* <ProductList /> */}
+            <Empty />
         </StyledMainPage>
     )
 }
