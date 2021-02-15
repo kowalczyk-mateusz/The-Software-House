@@ -51,7 +51,6 @@ font-weight: 600;
 `
 
 const ProductDescription = styled.div`
-margin-top: 8px;
 font-size: 14px;
 font-weight: 600;
 color: #9194a5;

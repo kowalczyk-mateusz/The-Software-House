@@ -3,9 +3,12 @@ import styled from 'styled-components'
 //Components
 import Navigation from '../Components/Navigation/Navigation'
 import ProductList from '../Components/ProductList/ProductList'
+import ProductCard from '../Components/ProductCard/ProductCard'
+
 const MainPage = () =>{
     return(
         <StyledMainPage>
+                <ProductCard/>
             <Navigation />
             <ProductList />
         </StyledMainPage>
