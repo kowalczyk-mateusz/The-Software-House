@@ -34,6 +34,7 @@ padding: 52px 24px 32px 24px;
 display: grid;
 grid-template-columns: 2fr 1fr;
 align-items: center;
+background-color: #fff;
 @media (min-width: 855px){
     grid-template-columns: 250px 1fr 50px;
     padding: 48px 108px;

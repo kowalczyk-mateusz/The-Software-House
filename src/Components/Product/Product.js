@@ -6,6 +6,7 @@ const Product = ()=>{
     return(
         <StyledProduct>
             <Image><img src={productImage} alt=""/></Image>
+            <ProductInfo>
             <ProductName>
             Nike Running Shoes
             </ProductName>
@@ -20,6 +21,7 @@ const Product = ()=>{
                <Star />
             </ProductRating>
             <DetailsButton>Show details</DetailsButton>
+            </ProductInfo>
         </StyledProduct>
     )
 }
@@ -29,15 +31,19 @@ height: 400px;
 width: 327px;
 display: flex;
 flex-direction: column;
-padding: 0px 16px 24px 16px;
+
 border-radius: 8px;
+background-color: #fff;
 `
 const Image = styled.div`
 img{
+    display: block;
     width: 100%;
 }
 `
-
+const ProductInfo = styled.div`
+padding: 0px 16px 24px 16px;
+`
 const ProductName = styled.div`
 margin-top: 16px;
 font-size: 18px;
