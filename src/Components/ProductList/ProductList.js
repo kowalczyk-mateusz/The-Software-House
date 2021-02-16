@@ -1,19 +1,21 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import Product from '../Product/Product'
-import { useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import ProductCard from '../ProductCard/ProductCard'
 import {useLocation} from 'react-router-dom'
 
 const ProductList = ( ) =>{
-    
 
     const {products, search} = useSelector((state) => state.products)
     const location = useLocation()
     const pathId = location.pathname.split('/')[2]
+
+
+
     return(
         <StyledProductList>
-            {pathId && <ProductCard />}
+            {pathId && <ProductCard/>}
             {search.length > 0 ? <> {search.map(search =><Product
                      id={search.id}
                      key={search.id} 

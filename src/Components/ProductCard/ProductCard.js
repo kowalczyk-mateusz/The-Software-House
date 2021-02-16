@@ -1,41 +1,47 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import productImage from '../../Assets/Images/shoes.png'
-const ProductCard = ( )=>{
-
+import {loadDetails} from '../../Actions/detailsAction'
+const ProductCard = ( {id})=>{
+    console.log(id)
     const history = useHistory()
 
     const exitCardShadow = (e) =>{
         const element = e.target
         if(element.classList.contains('shadow')){
-            history.push('/')
+            history.push('/product')
             
         }
     }
-
-    return(
+    const {details, isLoading} = useSelector((state) => state.details)
+    
+    return(<>
+        {!isLoading && (
         <Shadow className='shadow' onClick={exitCardShadow}>
             <Card>
-                <Close>
+                <Close className="shadow">
                 <svg className="shadow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#1A1B1D"/>
                 </svg>
 
                 </Close>
                 <Image>
-                    <img src={productImage} alt=""/>
+                    <img src={details.image} alt={details.name}/>
                 </Image>
                 <ProductInfo>
                 <ProductName>
-                    Nike running Shoes
+                    {details.name}
                 </ProductName>
                 <ProductDescription>
-                Buying Used Electronic Test Equipment What S The Difference Between Used Refurbished Remarketed And Rebuilt
+                {details.description}
                 </ProductDescription>
                 </ProductInfo>
             </Card>
         </Shadow>
+        )}
+        </>
     )
 }
 const Shadow = styled.div`
@@ -70,10 +76,11 @@ position: absolute;
 top: 25px;
 right: 25px;
 cursor: pointer;
+z-index: 999;
 `
 const Image = styled.div`
 width: 100%;
-
+height: 60%;
 img{
     width: 100%;
     height: 100%;
@@ -81,11 +88,12 @@ img{
     @media (min-width: 1200px){
     height: 70%;
     img{
-        object-fit: contain;
+        object-fit: cover;
     }
 }
 `
 const ProductInfo = styled.div`
+height: calc(100% - 60%);
 padding: 24px;
 background-color: #fff;
 @media (min-width: 1200px){

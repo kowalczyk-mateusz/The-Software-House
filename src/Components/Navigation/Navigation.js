@@ -90,6 +90,7 @@ font-size: 24px;
 font-weight: 600;
 color: #1a1b1d;
 margin-bottom: 24px;
+cursor: pointer;
 @media (min-width: 855px){
     margin-bottom: 0;
 }

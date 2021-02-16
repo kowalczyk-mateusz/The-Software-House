@@ -7,6 +7,7 @@ import Empty from '../Components/Empty/Empty'
 //REDUX
 import {loadProducts} from '../Actions/productAction'
 import {useDispatch , useSelector} from 'react-redux'
+import Loader from '../Components/Loader'
 const MainPage = () =>{
 
     const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const MainPage = () =>{
     return(
         <StyledMainPage>
         <Navigation />
-        {isLoading === true ? <h1>LOADING DATA</h1> : <>{search.length || products.length > 0 ? <ProductList /> : <Empty/> }</>}
+        {isLoading === true ? <Loader /> : <>{search.length || products.length > 0 ? <ProductList /> : <Empty/> }</>}
         </StyledMainPage>
     )
 }

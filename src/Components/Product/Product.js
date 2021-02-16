@@ -4,10 +4,13 @@ import productImage from '../../Assets/Images/Bitmap.png'
 import Star from '../Star'
 import EmptyStar from '../EmptyStar'
 import {Link} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Empty from '../Empty/Empty'
+import ProductCard from '../ProductCard/ProductCard'
+import {loadDetails} from '../../Actions/detailsAction'
 const Product = ({id, name, description, image, rating, promo, active})=>{
 
+    const dispatch = useDispatch()
 
     const ratingStars = () =>{
         const stars = []
@@ -22,8 +25,13 @@ const Product = ({id, name, description, image, rating, promo, active})=>{
         return stars;
     }
 
+    const loadDetailHandler = ()=>{
+            dispatch(loadDetails(id))
+        }
+
     return(
-        <StyledProduct>
+        <StyledProduct onClick={loadDetailHandler}>
+           
             <Image><img src={image} alt="" className={active ? 'active' : 'inactive'}/>
                 {promo && <StyledPromo>Promo</StyledPromo>}
             </Image>
