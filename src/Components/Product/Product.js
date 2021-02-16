@@ -8,7 +8,9 @@ import Empty from '../Empty/Empty'
 const Product = ({id, name, description, image, rating, promo, active})=>{
     return(
         <StyledProduct>
-            <Image><img src={image} alt="" className={active ? 'active' : 'inactive'}/></Image>
+            <Image><img src={image} alt="" className={active ? 'active' : 'inactive'}/>
+                {promo && <StyledPromo>Promo</StyledPromo>}
+            </Image>
             <ProductInfo>
             <ProductName>
             {name}
@@ -24,7 +26,7 @@ const Product = ({id, name, description, image, rating, promo, active})=>{
                <Star />
             </ProductRating>
             <Link to={`/product/${id}`}>
-            <DetailsButton className={active ? 'active' : 'inactive'}>Show details</DetailsButton>
+    <DetailsButton className={active ? 'active' : 'inactive'}>{active ? 'Show details' : 'Unavailable'}</DetailsButton>
             </Link>
             </ProductInfo>
         </StyledProduct>
@@ -42,6 +44,7 @@ background-color: #fff;
 `
 const Image = styled.div`
 height: 170px;
+position: relative;
 img{
     object-fit: cover;
     width: 100%;
@@ -68,7 +71,19 @@ font-size: 18px;
 font-weight: 600;
 justify-self: flex-start;
 `
-
+const StyledPromo = styled.div`
+width: 75px;
+height: 24px;
+background-color: #F9A52B;
+color: #fff;
+position: absolute;
+top: 15px;
+left: 0;
+font-size: 14px;
+text-align: center;
+line-height: 24px;
+font-weight: 600;
+`
 const ProductDescription = styled.div`
 font-size: 14px;
 font-weight: 600;

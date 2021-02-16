@@ -13,15 +13,16 @@ export const loadProducts = () => async (dispatch) =>{
             products: products.data.items,
         }
     })
+
 }
-export const searchProducts = (search) => async (dispatch)=>{
+export const searchProducts = (search, active, promo) => async (dispatch)=>{
 
     dispatch({
         type: "LOADING_PRODUCTS",
     })
 
 
-    const searchData = await axios.get(searchApi(search))
+    const searchData = await axios.get(searchApi(search, active, promo))
 
     dispatch({
         type: "SEARCH_PRODUCTS",

@@ -6,13 +6,21 @@ import {useDispatch} from 'react-redux'
 import {loadProducts} from '../../Actions/productAction'
 import {searchProducts} from '../../Actions/productAction'
 const Navigation = () =>{
-
     const dispatch = useDispatch()
     const [textInput, setTextInput] = useState('');
-    const searchHandler = (e) =>{
-        setTextInput(e.target.value)
+    const inputHandler = (e)=>{
+            setTextInput(e.target.value)
     }
 
+    const [promo, setPromo] = useState(false)
+    const [active, setActive] = useState(false)
+
+    const activeHandler = () =>{
+        setActive(!active)
+    }
+    const promoHandler = () =>{
+        setPromo(!promo)
+    }
 
     const submitChange = (e) =>{
         e.preventDefault()
@@ -20,15 +28,19 @@ const Navigation = () =>{
             return null;
         }
         else{
-            dispatch(searchProducts(textInput))
+
+            dispatch(searchProducts(textInput, promo, active))
+
             setTextInput('')
         }
+
     }
 
     const clearSearch = () =>{
         dispatch({type: 'CLEAR_PRODUCTS'});
         dispatch(loadProducts());
     }
+
 
     return(
         <Nav>
@@ -38,13 +50,13 @@ const Navigation = () =>{
             </Logo>
             <Menu>
                 <Search>
-                <input type="text" placeholder="Search" onChange={searchHandler}/>
+                <input placeholder="Search" onChange={inputHandler} type="text" value={textInput}/>
                 <button onClick={submitChange}><img src={SearchIcon} alt="SearchIcon"/></button>
                 </Search>
                 <CheckBoxContainer>
-                <CheckBox type='checkbox' name='active'/>
+                <CheckBox type='checkbox' onClick={activeHandler} name='active'/>
                 <CheckBoxLabel htmlFor='active'>Active</CheckBoxLabel>
-                <CheckBox type='checkbox' name="Promo"/>
+                <CheckBox type='checkbox' onClick={promoHandler} name="Promo"/>
                 <CheckBoxLabel htmlFor='Promo'>Promo</CheckBoxLabel>
                 </CheckBoxContainer>
             </Menu>

@@ -11,10 +11,10 @@ const MainPage = () =>{
 
     const dispatch = useDispatch()
     const {search, products, isLoading} = useSelector((state)=> state.products)
+
     useEffect(()=>{
         dispatch(loadProducts());
     },[dispatch])
-
     return(
         <StyledMainPage>
         <Navigation />
