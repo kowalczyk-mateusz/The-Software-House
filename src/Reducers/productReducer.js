@@ -1,6 +1,9 @@
 const initialState = {
     products: [],
     search: [],
+    totalItems: 0,
+    totalPages: 0,
+     currentPages: 0,
     isLoading: true,
 }
 
@@ -10,6 +13,9 @@ const productReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 products: action.payload.products,
+                totalItems: action.payload.totalItems,
+                totalPages: action.payload.totalPages,
+                currentPage: action.payload.currentPage,
                 isLoading: false,
             }
         case "SEARCH_PRODUCTS":

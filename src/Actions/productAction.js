@@ -11,6 +11,10 @@ export const loadProducts = () => async (dispatch) =>{
         type: "FETCH_PRODUCTS",
         payload: {
             products: products.data.items,
+            totalItems: products.data.meta.totalItems,
+            totalPages: products.data.meta.totalPages,
+            currentPage: products.data.meta.currentPage,
+
         }
     })
 
@@ -28,6 +32,9 @@ export const searchProducts = (search, active, promo) => async (dispatch)=>{
         type: "SEARCH_PRODUCTS",
         payload:{
             search: searchData.data.items,
+            totalItems: searchData.data.meta.totalItems,
+            totalPages: searchData.data.meta.totalPages,
+            currentPage: searchData.data.meta.currentPage,
         }
     })
 

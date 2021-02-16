@@ -8,6 +8,7 @@ import Empty from '../Components/Empty/Empty'
 import {loadProducts} from '../Actions/productAction'
 import {useDispatch , useSelector} from 'react-redux'
 import Loader from '../Components/Loader'
+import Pagination from '../Components/Pagination/Pagination'
 const MainPage = () =>{
 
     const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const MainPage = () =>{
         <StyledMainPage>
         <Navigation />
         {isLoading === true ? <Loader /> : <>{search.length || products.length > 0 ? <ProductList /> : <Empty/> }</>}
+        <Pagination />
         </StyledMainPage>
     )
 }
