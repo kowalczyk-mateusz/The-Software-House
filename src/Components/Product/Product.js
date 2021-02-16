@@ -2,16 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import productImage from '../../Assets/Images/Bitmap.png'
 import Star from '../Star'
-const Product = ()=>{
+import {Link} from 'react-router-dom'
+const Product = ({id, name, description, image, rating, promo, active})=>{
+    console.log(active)
+
     return(
         <StyledProduct>
-            <Image><img src={productImage} alt=""/></Image>
+            <Image><img src={image} alt="" className={active ? 'active' : 'inactive'}/></Image>
             <ProductInfo>
             <ProductName>
-            Nike Running Shoes
+            {name}
             </ProductName>
             <ProductDescription>
-            Buying Used Electronic Test Equipment What S The Difference Between Used Refurbished Remarketed And Rebuilt
+            {description}
             </ProductDescription>
             <ProductRating>
                <Star />
@@ -20,34 +23,50 @@ const Product = ()=>{
                <Star />
                <Star />
             </ProductRating>
-            <DetailsButton>Show details</DetailsButton>
+            <Link to={`/product/${id}`}>
+            <DetailsButton className={active ? 'active' : 'inactive'}>Show details</DetailsButton>
+            </Link>
             </ProductInfo>
         </StyledProduct>
     )
 }
 
 const StyledProduct = styled.div`
-height: 400px;
+min-height: 400px;
 width: 327px;
 display: flex;
 flex-direction: column;
-
+overflow: hidden;
 border-radius: 8px;
 background-color: #fff;
 `
 const Image = styled.div`
+height: 170px;
 img{
-    display: block;
+    object-fit: cover;
     width: 100%;
+    height: 100%;
+}
+.active{
+    display: block;
+}
+.inactive{
+    opacity: 0.5;
+    filter: grayscale(100%);
 }
 `
 const ProductInfo = styled.div`
 padding: 0px 16px 24px 16px;
+height: calc(100% - 170px);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 `
 const ProductName = styled.div`
 margin-top: 16px;
 font-size: 18px;
 font-weight: 600;
+justify-self: flex-start;
 `
 
 const ProductDescription = styled.div`
@@ -61,13 +80,18 @@ margin-top: 33px;
 `
 const DetailsButton = styled.div`
 margin-top: 18px;
-background-color: #4460F7;
 border-radius: 4px;
 padding: 11px 0px;
 text-align: center;
 font-size: 14px;
 font-weight: 600;
 color: #fff;
+&.active{
+    background-color: #4460F7;
+}
+&.inactive{
+    background-color: #9194A5;
+}
 `
 
 export default Product
