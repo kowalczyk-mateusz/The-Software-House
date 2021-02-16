@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import productImage from '../../Assets/Images/Bitmap.png'
 import Star from '../Star'
 import {Link} from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import Empty from '../Empty/Empty'
 const Product = ({id, name, description, image, rating, promo, active})=>{
-    console.log(active)
-
     return(
         <StyledProduct>
             <Image><img src={image} alt="" className={active ? 'active' : 'inactive'}/></Image>

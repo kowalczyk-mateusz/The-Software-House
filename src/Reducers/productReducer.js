@@ -1,5 +1,7 @@
 const initialState = {
     products: [],
+    search: [],
+    isLoading: true,
 }
 
 const productReducer = (state = initialState, action) =>{
@@ -8,6 +10,24 @@ const productReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 products: action.payload.products,
+                isLoading: false,
+            }
+        case "SEARCH_PRODUCTS":
+            return{
+                ...state,
+                search: action.payload.search,
+                products: [],
+                isLoading: false,
+            }
+        case "CLEAR_PRODUCTS":
+            return{
+                ...state,
+                search: [],
+            }
+        case "LOADING_PRODUCTS":
+            return{
+                ...state,
+                isLoading: true,
             }
         default: 
             return { ...state}

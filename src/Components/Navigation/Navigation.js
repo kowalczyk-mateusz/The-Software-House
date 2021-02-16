@@ -1,17 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import ProfilePicture from '../../Assets/Images/ProfilePicture.png'
 import SearchIcon from '../../Assets/Images/Shape.png'
+import {useDispatch} from 'react-redux'
+import {loadProducts} from '../../Actions/productAction'
+import {searchProducts} from '../../Actions/productAction'
 const Navigation = () =>{
+
+    const dispatch = useDispatch()
+    const [textInput, setTextInput] = useState('');
+    const searchHandler = (e) =>{
+        setTextInput(e.target.value)
+    }
+
+
+    const submitChange = (e) =>{
+        e.preventDefault()
+        if(textInput.length === 0){
+            return null;
+        }
+        else{
+            dispatch(searchProducts(textInput))
+            setTextInput('')
+        }
+    }
+
+    const clearSearch = () =>{
+        dispatch({type: 'CLEAR_PRODUCTS'});
+        dispatch(loadProducts());
+    }
+
     return(
         <Nav>
-            <Logo>
+            <NavContainer>
+            <Logo onClick={clearSearch}>
                 join.tsh.io
             </Logo>
             <Menu>
                 <Search>
-                <input type="text" placeholder="Search"/>
-                <button><img src={SearchIcon} alt="SearchIcon"/></button>
+                <input type="text" placeholder="Search" onChange={searchHandler}/>
+                <button onClick={submitChange}><img src={SearchIcon} alt="SearchIcon"/></button>
                 </Search>
                 <CheckBoxContainer>
                 <CheckBox type='checkbox' name='active'/>
@@ -23,24 +51,28 @@ const Navigation = () =>{
             <Profile>
                 <img src={ProfilePicture} alt=""/>
             </Profile>
+            </NavContainer>
         </Nav>
     )
 }
 
 const Nav = styled.nav`
-width: 100%;
-height: auto;
-padding: 52px 24px 32px 24px;
-display: grid;
-grid-template-columns: 2fr 1fr;
-align-items: center;
-background-color: #fff;
-@media (min-width: 855px){
-    grid-template-columns: 250px 1fr 50px;
-    padding: 48px 108px;
-}
+    width: 100%;
+    background-color: #fff;
 `
-
+const NavContainer = styled.div`
+    max-width: 1600px;
+    height: auto;
+    padding: 52px 24px 32px 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    margin: 0 auto;
+    @media (min-width: 855px){
+        grid-template-columns: 250px 1fr 50px;
+        padding: 48px 108px;
+    }
+`
 const Logo = styled.div`
 font-size: 24px;
 font-weight: 600;
