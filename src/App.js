@@ -6,10 +6,10 @@ import {Route} from 'react-router-dom'
 function App() {
   return (
     <div className="App">
-      <Route path='/Login' exact>
+      <Route path='/' exact>
         <Login />
         </Route>
-        <Route path={['/product/:id', "/"]} exact>
+        <Route path={['/product/:id', "/product"]} exact>
         <MainPage />
         </Route>
     </div>

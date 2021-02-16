@@ -2,10 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 import productImage from '../../Assets/Images/Bitmap.png'
 import Star from '../Star'
+import EmptyStar from '../EmptyStar'
 import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Empty from '../Empty/Empty'
 const Product = ({id, name, description, image, rating, promo, active})=>{
+
+
+    const ratingStars = () =>{
+        const stars = []
+        for(let i = 1; i<=5;i++){
+            if(i <= rating){
+                stars.push(<Star/>)
+            }
+            else{
+                stars.push(<EmptyStar/>)
+            }
+        }
+        return stars;
+    }
+
     return(
         <StyledProduct>
             <Image><img src={image} alt="" className={active ? 'active' : 'inactive'}/>
@@ -19,11 +35,7 @@ const Product = ({id, name, description, image, rating, promo, active})=>{
             {description}
             </ProductDescription>
             <ProductRating>
-               <Star />
-               <Star />
-               <Star />
-               <Star />
-               <Star />
+               {ratingStars()}
             </ProductRating>
             <Link to={`/product/${id}`}>
     <DetailsButton className={active ? 'active' : 'inactive'}>{active ? 'Show details' : 'Unavailable'}</DetailsButton>
@@ -71,6 +83,7 @@ font-size: 18px;
 font-weight: 600;
 justify-self: flex-start;
 `
+
 const StyledPromo = styled.div`
 width: 75px;
 height: 24px;

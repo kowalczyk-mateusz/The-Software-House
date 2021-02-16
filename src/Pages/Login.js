@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 //image
 import LoginImage from '../Assets/Images/LoginImage.png'
 const Login = () =>{
@@ -20,7 +21,7 @@ const Login = () =>{
                     <StyledInput type="text" placeholder='Enter username'/>
                     <StyledLabel htmlFor="password">Password</StyledLabel>
                     <StyledInput type="password" autoComplete='false' placeholder='Enter Password'/>
-                    <LoginButton type="submit">Log in</LoginButton>
+                    <StyledLink to="/product"><LoginButton type="submit">Log in</LoginButton></StyledLink>
                     <ForgotPassword><a href="#">Forgot password?</a></ForgotPassword>
                 </StyledForm>
             </LoginContainer>
@@ -87,9 +88,14 @@ font-weight: 600;
     color: #9194a5;
 }
 `
+const StyledLink = styled(Link)`
+margin-top: 56px;
+cursor: pointer;
+`
 const LoginButton = styled.button`
 max-width: 496px;
-margin-top: 56px;
+width: 100%;
+height: 100%;
 background-color: #4460F7;
 border: none;
 border-radius: 4px;
