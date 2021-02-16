@@ -1,0 +1,1 @@
+export const api = `https://join-tsh-api-staging.herokuapp.com/products?limit=4`

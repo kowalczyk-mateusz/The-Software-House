@@ -7,7 +7,7 @@ const Empty = () =>{
             <EmptyCard>
                 <Icon>
                 <svg width="38" height="48" viewBox="0 0 38 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5 9.02197H34C35.6569 9.02197 37 10.3651 37 12.022V43.522C37 45.1788 35.6569 46.522 34 46.522H4C2.34315 46.522 1 45.1788 1 43.522V12.022C1 10.3651 2.34315 9.02197 4 9.02197H11.5C11.5 4.87984 14.8579 1.52197 19 1.52197C23.1421 1.52197 26.5 4.87984 26.5 9.02197Z" stroke="#B9BDCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M26.5 9.02197H34C35.6569 9.02197 37 10.3651 37 12.022V43.522C37 45.1788 35.6569 46.522 34 46.522H4C2.34315 46.522 1 45.1788 1 43.522V12.022C1 10.3651 2.34315 9.02197 4 9.02197H11.5C11.5 4.87984 14.8579 1.52197 19 1.52197C23.1421 1.52197 26.5 4.87984 26.5 9.02197Z" stroke="#B9BDCF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                   </Icon>
                   <EmptyHeadline>
@@ -34,16 +34,13 @@ padding: 24px;
 const EmptyCard = styled.div`
 background-color: white;
 border-radius: 8px;
-width: 327px;
+min-width: 327px;
+width: 600px;
 height: 344px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-@media (min-width: 1200px){
-    width: 600px;
-    height: 344px;
-}
 `
 const Icon = styled.div`
 `
