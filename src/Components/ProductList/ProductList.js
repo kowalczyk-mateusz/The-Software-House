@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Product from '../Product/Product'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import ProductCard from '../ProductCard/ProductCard'
 import {useLocation} from 'react-router-dom'
 

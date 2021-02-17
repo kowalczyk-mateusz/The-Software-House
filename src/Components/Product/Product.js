@@ -1,12 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import productImage from '../../Assets/Images/Bitmap.png'
 import Star from '../Star'
 import EmptyStar from '../EmptyStar'
 import {Link} from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import Empty from '../Empty/Empty'
-import ProductCard from '../ProductCard/ProductCard'
+import {useDispatch } from 'react-redux'
 import {loadDetails} from '../../Actions/detailsAction'
 const Product = ({id, name, description, image, rating, promo, active})=>{
 
