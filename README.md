@@ -4,7 +4,7 @@ online product catalog
 
 ## Live
 
-https://the-software-house-task.netlify.app\
+https://the-software-house-task.netlify.app
 
 ## Stack:
 
@@ -13,7 +13,7 @@ Redux\
 Redux Thunk\
 React Router\
 StyledComponents\
-Axios\
+Axios
 
 ## Login page:
 
