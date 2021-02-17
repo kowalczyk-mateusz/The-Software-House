@@ -3,13 +3,22 @@ import styled from 'styled-components'
 import {useSelector} from 'react-redux'
 
 
-const Pagination = () =>{
+const Pagination = ({page, setPage, limit, setLimit}) =>{
+
+
+    const lastPage = () =>{
+       setPage(totalPages)
+    }
+    const firstPage = () =>{
+        setPage(1);
+    }
+    console.log(page)
 
     const {totalPages, currentPages, currentPage} = useSelector((state)=> state.products)
-    console.log(totalPages)
     return(
         <StyledPagination>
-            <First>
+            <Paginate>
+            <First onClick={firstPage}>
             First
             </First>
             <Numbers>
@@ -21,23 +30,32 @@ const Pagination = () =>{
               <p>9</p>
               <p>10</p>
             </Numbers>
-            <Last>
+            <Last onClick={lastPage}>
             Last
             </Last>
+            </Paginate>
         </StyledPagination>
     )
 }
 const StyledPagination = styled.div`
 width: 100%;
+background-color: #F8F8FA;
+`
+const Paginate = styled.div`
+width: 100%;
+max-width: 400px;
+margin: 0 auto;
+padding: 0 40px;
+padding-bottom: 68px;
+padding-top: 20px;
 display: flex;
 justify-content: space-between;
-padding: 0 40px;
 `
-
 const First = styled.div`
 color: #1A1B1D;
 font-weight: 600;
 font-size: 14px;
+cursor: pointer;
 `
 const Numbers = styled.div`
 color: #1A1B1D;
@@ -52,5 +70,6 @@ const Last = styled.div`
 color: #1A1B1D;
 font-weight: 600;
 font-size: 14px;
+cursor: pointer;
 `
 export default Pagination

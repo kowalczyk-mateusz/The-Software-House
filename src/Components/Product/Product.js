@@ -16,10 +16,10 @@ const Product = ({id, name, description, image, rating, promo, active})=>{
         const stars = []
         for(let i = 1; i<=5;i++){
             if(i <= rating){
-                stars.push(<Star/>)
+                stars.push(<Star key={i}/>)
             }
             else{
-                stars.push(<EmptyStar/>)
+                stars.push(<EmptyStar key={i}/>)
             }
         }
         return stars;

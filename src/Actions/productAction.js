@@ -3,9 +3,9 @@ import {api, searchApi} from '../Assets/Api/Api'
 
 //ACTIONS 
 
-export const loadProducts = () => async (dispatch) =>{
+export const loadProducts = (limit, page) => async (dispatch) =>{
 
-    const products = await axios.get(api)
+    const products = await axios.get(api(limit, page))
 
     dispatch({
         type: "FETCH_PRODUCTS",

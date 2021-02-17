@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 //Components
 import Navigation from '../Components/Navigation/Navigation'
@@ -12,16 +12,17 @@ import Pagination from '../Components/Pagination/Pagination'
 const MainPage = () =>{
 
     const dispatch = useDispatch()
-    const {search, products, isLoading} = useSelector((state)=> state.products)
-
+    const {search, products, isLoading, totalPages,} = useSelector((state)=> state.products)
+    const [limit, setLimit] = useState(5);
+    const [page, setPage] = useState(1);
     useEffect(()=>{
-        dispatch(loadProducts());
-    },[dispatch])
+        dispatch(loadProducts(limit, page));
+    },[page, limit])
     return(
         <StyledMainPage>
         <Navigation />
         {isLoading === true ? <Loader /> : <>{search.length || products.length > 0 ? <ProductList /> : <Empty/> }</>}
-        <Pagination />
+        <Pagination limit={limit} setLimit={setLimit} page={page} setPage={setPage}/>
         </StyledMainPage>
     )
 }
@@ -29,6 +30,6 @@ const MainPage = () =>{
 const StyledMainPage = styled.div`
 background-color: #F8F8FA;
 width: 100%;
-height: 200vh;
+height: auto;
 `
 export default MainPage;

@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { useHistory} from 'react-router-dom'
 import styled from 'styled-components'
-import productImage from '../../Assets/Images/shoes.png'
-import {loadDetails} from '../../Actions/detailsAction'
-const ProductCard = ( {id})=>{
-    console.log(id)
+import Loader from '../Loader'
+const ProductCard = ()=>{
     const history = useHistory()
 
     const exitCardShadow = (e) =>{
@@ -18,8 +16,9 @@ const ProductCard = ( {id})=>{
     const {details, isLoading} = useSelector((state) => state.details)
     
     return(<>
-        {!isLoading && (
+
         <Shadow className='shadow' onClick={exitCardShadow}>
+        {isLoading ? <Loader /> :
             <Card>
                 <Close className="shadow">
                 <svg className="shadow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,8 +38,9 @@ const ProductCard = ( {id})=>{
                 </ProductDescription>
                 </ProductInfo>
             </Card>
+                    }
         </Shadow>
-        )}
+
         </>
     )
 }
