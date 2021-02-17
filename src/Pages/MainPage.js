@@ -14,7 +14,7 @@ import Pagination from '../Components/Pagination/Pagination'
 const MainPage = ({isLoged, setIsLoged}) =>{
 
     const dispatch = useDispatch()
-    const {search, products, isLoading, totalPages, currentPage} = useSelector((state)=> state.products)
+    const {search, products, isLoading} = useSelector((state)=> state.products)
     const [limit, setLimit] = useState(12);
     const [page, setPage] = useState(1);
     const [mobile, setMobile] = useState(false)
