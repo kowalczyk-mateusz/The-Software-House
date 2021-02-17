@@ -2,19 +2,51 @@ import React from 'react'
 import styled from 'styled-components'
 import {useSelector} from 'react-redux'
 
+const Pagination = ({page, setPage}) =>{
 
-const Pagination = ({page, setPage, limit, setLimit}) =>{
-
-
+    const {totalPages, currentPage} = useSelector((state)=> state.products)
+    // useEffect(()=>{
+    //     setPage(totalPages)
+    // },[totalPages])
     const lastPage = () =>{
-       setPage(totalPages)
+        setPage(totalPages)
     }
     const firstPage = () =>{
         setPage(1);
     }
-    console.log(page)
 
-    const {totalPages, currentPages, currentPage} = useSelector((state)=> state.products)
+      const firstNumber = () =>{
+        if(currentPage < 2){
+            setPage( 1)
+            const element = document.querySelector('.firstNumber')
+            element.classList.add('active')
+        }
+        else{
+            setPage(currentPage - 1)
+        }
+
+        
+      }
+      const secondNumber = () =>{
+        if(currentPage < 2){
+            setPage(2)
+        }
+        else{
+            setPage(currentPage)
+        }
+      }
+
+      const thirdNumber = () =>{
+        if(currentPage < 2){
+            setPage ( 3 )
+        }
+        else if(currentPage == totalPages){
+            setPage(totalPages)
+        }
+        else{
+            setPage(currentPage + 1)
+        }
+      }
     return(
         <StyledPagination>
             <Paginate>
@@ -22,13 +54,17 @@ const Pagination = ({page, setPage, limit, setLimit}) =>{
             First
             </First>
             <Numbers>
-              <p>1</p>
-              <p>2</p>
-              <p>3</p>
+              <p className={currentPage == 1 ? 'active': ''} onClick={firstNumber}>{currentPage == 1 ? 1 : currentPage - 1}</p>
+              <p className={currentPage >= 2 ? 'active': ''}onClick={secondNumber}>{currentPage < 2 ? 2 : currentPage}</p>
+              <p onClick={thirdNumber}>{currentPage < 2 ? 3 : currentPage + 1}</p>
+              {currentPage !== totalPages &&(
+                  <>
               <p>...</p>
-              <p>8</p>
-              <p>9</p>
-              <p>10</p>
+              <p onClick={()=> setPage(totalPages - 2)}>{totalPages-2}</p>
+              <p onClick={()=> setPage(totalPages - 1)}>{totalPages-1}</p>
+                <p onClick={()=> setPage(totalPages)}>{totalPages}</p>
+                </>
+                 )}
             </Numbers>
             <Last onClick={lastPage}>
             Last
@@ -65,6 +101,12 @@ display: flex;
 width: 100%;
 justify-content: space-between;
 padding: 0px 32px;
+p{
+    cursor: pointer;
+}
+.active{
+    color: #4460F7;
+}
 `
 const Last = styled.div`
 color: #1A1B1D;

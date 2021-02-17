@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 //image
 import LoginImage from '../Assets/Images/LoginImage.png'
-const Login = () =>{
+const Login = ({isLoged}) =>{
     return(
         <StyledLogin>
             <StyledImage>
@@ -21,7 +21,7 @@ const Login = () =>{
                     <StyledInput type="text" placeholder='Enter username'/>
                     <StyledLabel htmlFor="password">Password</StyledLabel>
                     <StyledInput type="password" autoComplete='false' placeholder='Enter Password'/>
-                    <StyledLink to="/product"><LoginButton type="submit">Log in</LoginButton></StyledLink>
+                    <StyledLink to="/product"><LoginButton type="submit" onClick={()=> isLoged(false)}>Log in</LoginButton></StyledLink>
                     <ForgotPassword><a href="#">Forgot password?</a></ForgotPassword>
                 </StyledForm>
             </LoginContainer>

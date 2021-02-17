@@ -5,7 +5,7 @@ import SearchIcon from '../../Assets/Images/Shape.png'
 import {useDispatch} from 'react-redux'
 import {loadProducts} from '../../Actions/productAction'
 import {searchProducts} from '../../Actions/productAction'
-const Navigation = () =>{
+const Navigation = ({limit, page, isLoged, setIsLoged}) =>{
     const dispatch = useDispatch()
     const [textInput, setTextInput] = useState('');
     const inputHandler = (e)=>{
@@ -38,9 +38,13 @@ const Navigation = () =>{
 
     const clearSearch = () =>{
         dispatch({type: 'CLEAR_PRODUCTS'});
-        dispatch(loadProducts());
+        dispatch(loadProducts(limit, page));
     }
 
+    const logoutHandler = () =>{
+        const logout = document.querySelector('.logout')
+        logout.classList.toggle('active')
+    }
 
     return(
         <Nav>
@@ -60,9 +64,19 @@ const Navigation = () =>{
                 <CheckBoxLabel htmlFor='Promo'>Promo</CheckBoxLabel>
                 </CheckBoxContainer>
             </Menu>
-            <Profile>
+            {!isLoged && (
+            <Profile onClick={logoutHandler}>
+
+                <Logout className="logout" onClick={()=> setIsLoged(!isLoged)}>Logout</Logout>
                 <img src={ProfilePicture} alt=""/>
-            </Profile>
+                </Profile>)}
+                {isLoged && (
+                    <Login onClick={()=> setIsLoged(!isLoged)}>
+                        Log in
+                    </Login>
+                )}
+
+
             </NavContainer>
         </Nav>
     )
@@ -71,6 +85,7 @@ const Navigation = () =>{
 const Nav = styled.nav`
     width: 100%;
     background-color: #fff;
+    margin-bottom: 2.5rem;
 `
 const NavContainer = styled.div`
     max-width: 1600px;
@@ -147,6 +162,11 @@ grid-column-end: 3;
 grid-row-start: 1;
 justify-self: end;
 margin-bottom: 24px;
+.active{
+    display: block !important;
+    background-color: #fff;
+    opacity: 1;
+}
 @media (min-width: 855px){
     grid-column-start: 3;
     margin-bottom: 0;
@@ -178,5 +198,50 @@ color: #1a1b1d;
 font-weight: 600;
 margin-left: 8px;
 margin-right: 32px;
+`
+const Logout = styled.div`
+cursor: pointer;
+&.logout{
+display: none;
+width: 184px;
+height: 56px;
+border-radius: 4px;
+box-shadow: 0px 8px 32px rgba(17, 18, 20, 0.158514);
+position: absolute;
+right: 80px;
+top: 56px;
+@media (min-width: 855px){
+top: 106px;
+right: 7%;
+}
+z-index: 999;
+color: #1a1b1d;
+font-size: 14px;
+text-align: left;
+padding-left: 16px; 
+line-height: 56px;
+font-weight: 600;
+}
+`
+const Login = styled.div`
+width: 88px;
+height: 38px;
+border-radius: 4px;
+background-color: #fff;
+color: #4460F7;
+border: 1px solid #4460F7;
+grid-column-start: 2;
+grid-column-end: 3;
+grid-row-start: 1;
+margin-bottom: 24px;
+font-size: 14px;
+line-height: 33px;
+text-align: center;
+font-weight: 600;
+cursor: pointer;
+@media (min-width: 855px){
+    grid-column-start: 3;
+    margin-bottom: 0;
+}
 `
 export default Navigation
